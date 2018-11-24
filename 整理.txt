@@ -1,0 +1,70 @@
++------------------------------------+
+|              字符类型              |
++------------------------------------+
+1.存储模型  原子类型 数值，字符串
+	    容器类型 元组，列表，字典，集合
+2.访问模式  直接访问，顺序访问，映射访问
++-------------------------------------------------------+   
+| 数据类型	存储模型 	 更新模型	访问模型| 
+| 数值	        原子类型	 不可变	        直接访问|
+| 字符串        原子类型	 不可变	        顺序访问|
+| 元组	        容器    	 不可变	        顺序访问|
+| 列表	        容器	         可变	        顺序访问|
+| 字典	        容器	         可变	        映射访问|
+| 集合          容器             可变           直接访问|
++-------------------------------------------------------+
+ex:
+   >>> new = {"key":'value','key2':'value'}
+   >>> new.items()
+   dict_items([('key', 'value'), ('key2', 'value')])
+ex:
+  >>> ''.join(["fds","sd"])
+  'fdssd'
+
++------------------------------------+
+|              输出打印              |
++------------------------------------+
+1.
+>>> print('hello{:-^20}'.format("haha"))
+hello--------haha--------
+2.>>> print('hello %-6s %-7s'%("haha",'hi'))
+hello haha   hi 
+3.>>> 'hello'.center(50)
+'                      hello  
+4.>>> 'haha'.replace('ha',"ma")
+'mama'
+5.>>> 'haha   '.strip()  #或rstrip()
+'haha'
+6.>>> 'haha.haha.haha'.split('.')
+['haha', 'haha', 'haha']
+7.>>> a = [2,4,5,2,6,2]
+>>> a.sort()
+>>> a
+[2, 2, 2, 4, 5, 6]
+>>> a.reverse()
+>>> a
+[6, 5, 4, 2, 2, 2]
+>>> a.reverse()
+
+>>> from functools import partical
+>>> def add(a, b, c, d, e):
+...     return a+b+c+d+e
+>>> add(1,2,3,4,5)
+15
+>>> newadd = partial(add, 10, 20, 30, 40)
+>>> newadd
+functools.partial(<function add at 0x7f458f16eea0>, 10, 20, 30, 40)
+>>> newadd(6)
+106
+
+>>> def mygen():
+...   a = 10 + 20
+...   yield a
+...   yield 'hello world'
+...   b = 'ni' + ' ' + 'hao'
+...   yield b
+>>> mg = mygen()
+>>> mg.__next__()
+>>> newg = mygen()
+>>> for item in newg:
+...   print(item)
